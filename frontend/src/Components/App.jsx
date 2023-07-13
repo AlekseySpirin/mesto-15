@@ -45,6 +45,7 @@ function App() {
   const [isLoading, setIsLoading] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
   const [isResultsOpen, setIsResultsOpen] = useState(false);
+  
   const api = new Api({
     url: 'http://localhost:3000',
     headers: {
