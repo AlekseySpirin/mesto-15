@@ -23,7 +23,7 @@ function request(endpoint, options) {
   }
   
   
-  return fetch(`${ REACT_APP_API_URL }${endpoint}`, {
+  return fetch(`${ REACT_APP_API_URL + endpoint }`, {
     ...options,
     headers,
     credentials: 'include',
