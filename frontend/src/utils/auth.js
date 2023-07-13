@@ -21,8 +21,9 @@ function request(endpoint, options) {
   if (token) {
     document.cookie = `token=${token}; SameSite=Strict`;
   }
-
-  return fetch(`http://localhost:3000${endpoint}`, {
+  
+  
+  return fetch(`http://api.mesto-spirin.nomoredomains.work${endpoint}`, {
     ...options,
     headers,
     credentials: 'include',
