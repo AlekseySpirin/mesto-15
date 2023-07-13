@@ -1,5 +1,5 @@
 import Cookies from 'js-cookie';
-
+const { REACT_APP_API_URL } = process.env
 function checkResponse(res) {
   if (res.ok) {
     return res.json();
@@ -21,8 +21,9 @@ function request(endpoint, options) {
   if (token) {
     document.cookie = `token=${token}; SameSite=Strict`;
   }
-
-  return fetch(`http://localhost:3000${endpoint}`, {
+  
+  
+  return fetch(`${ REACT_APP_API_URL }${endpoint}`, {
     ...options,
     headers,
     credentials: 'include',

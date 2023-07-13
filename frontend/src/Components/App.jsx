@@ -45,9 +45,9 @@ function App() {
   const [isLoading, setIsLoading] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
   const [isResultsOpen, setIsResultsOpen] = useState(false);
-  
+  const { REACT_APP_API_URL } = process.env
   const api = new Api({
-    url: 'http://localhost:3000',
+    url: REACT_APP_API_URL,
     headers: {
       'Content-Type': 'application/json',
     },
