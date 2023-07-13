@@ -11,7 +11,7 @@ const { notFound } = require("./middlewares/notFound");
 const { errorHandler } = require("./middlewares/errorHandler");
 const { celebrateError } = require("./middlewares/celebrateError");
 
-const { PORT, DB_URL } = process.env;
+const { PORT, DB_URL = "mongodb://127.0.0.1:27017/mestodb" } = process.env;
 const limiter = rateLimit({
   windowMs: 15 * 60 * 1000, // 15 minutes
   max: 100,
