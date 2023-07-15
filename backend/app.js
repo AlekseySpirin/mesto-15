@@ -1,6 +1,6 @@
 const express = require("express");
 
-// const cors = require("cors");
+const cors = require("cors");
 const helmet = require("helmet");
 const bodyParser = require("body-parser");
 const cookieParser = require("cookie-parser");
@@ -42,28 +42,37 @@ mongoose
 const app = express();
 
 // eslint-disable-next-line consistent-return
-app.use(function (req, res, next) {
-  const { origin } = req.headers;
-  res.header("Access-Control-Allow-Credentials", "true");
-  if (allowedCors.includes(origin)) {
-    res.header("Access-Control-Allow-Origin", "*");
-  }
-  const { method } = req;
-  const DEFAULT_ALLOWED_METHODS = "GET,HEAD,PUT,PATCH,POST,DELETE";
+// app.use(function (req, res, next) {
+//   const { origin } = req.headers;
+//   res.header("Access-Control-Allow-Credentials", "true");
+//   if (allowedCors.includes(origin)) {
+//     res.header("Access-Control-Allow-Origin", origin);
+//   }
+//   const { method } = req;
+//   const DEFAULT_ALLOWED_METHODS = "GET,HEAD,PUT,PATCH,POST,DELETE";
+//
+//   if (method === "OPTIONS") {
+//     res.header("Access-Control-Allow-Methods", DEFAULT_ALLOWED_METHODS);
+//   }
+//   const requestHeaders = req.headers["access-control-request-headers"];
+//   if (method === "OPTIONS") {
+//     res.header("Access-Control-Allow-Headers", requestHeaders);
+//     return res.end();
+//   }
+//
+//   next();
+// });
+const corsOptions = {
+  origin: allowedCors,
+  credentials: true,
+  methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
+  preflightContinue: false,
+  optionsSuccessStatus: 204,
+  allowedHeaders: "Content-Type, Authorization",
+  exposedHeaders: "Content-Range, X-Content-Range"
+};
 
-  if (method === "OPTIONS") {
-    res.header("Access-Control-Allow-Methods", DEFAULT_ALLOWED_METHODS);
-  }
-  const requestHeaders = req.headers["access-control-request-headers"];
-  if (method === "OPTIONS") {
-    res.header("Access-Control-Allow-Headers", requestHeaders);
-    return res.end();
-  }
-
-  next();
-});
-
-// app.use(cors());
+app.use(cors(corsOptions));
 app.use(limiter);
 // app.use(express.static(join(__dirname, "public")));
 app.use(helmet());
