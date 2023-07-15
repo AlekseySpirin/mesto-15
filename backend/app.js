@@ -14,6 +14,15 @@ const { errorHandler } = require("./middlewares/errorHandler");
 const { celebrateError } = require("./middlewares/celebrateError");
 
 const { PORT, DB_URL = "mongodb://127.0.0.1:27017/mestodb" } = process.env;
+
+const allowedCors = [
+  "https://praktikum.tk",
+  "http://praktikum.tk",
+  "http://mesto-spirin.nomoredomains.work",
+  "https://mesto-spirin.nomoredomains.work",
+  "localhost:3000"
+];
+
 const limiter = rateLimit({
   windowMs: 15 * 60 * 1000, // 15 minutes
   max: 100,
@@ -29,6 +38,29 @@ mongoose
   });
 
 const app = express();
+
+// eslint-disable-next-line consistent-return
+app.use(function (req, res, next) {
+  const { origin } = req.headers;
+
+  if (allowedCors.includes(origin)) {
+    res.header("Access-Control-Allow-Origin", origin);
+  }
+  const { method } = req;
+  const DEFAULT_ALLOWED_METHODS = "GET,HEAD,PUT,PATCH,POST,DELETE";
+
+  if (method === "OPTIONS") {
+    res.header("Access-Control-Allow-Methods", DEFAULT_ALLOWED_METHODS);
+  }
+  const requestHeaders = req.headers["access-control-request-headers"];
+  if (method === "OPTIONS") {
+    res.header("Access-Control-Allow-Headers", requestHeaders);
+    return res.end();
+  }
+
+  next();
+});
+
 // app.use(cors());
 app.use(limiter);
 // app.use(express.static(join(__dirname, "public")));
