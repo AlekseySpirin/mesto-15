@@ -1,6 +1,6 @@
 const express = require("express");
 
-const cors = require("cors");
+// const cors = require("cors");
 const helmet = require("helmet");
 const bodyParser = require("body-parser");
 const cookieParser = require("cookie-parser");
@@ -29,7 +29,7 @@ mongoose
   });
 
 const app = express();
-app.use(cors());
+// app.use(cors());
 app.use(limiter);
 // app.use(express.static(join(__dirname, "public")));
 app.use(helmet());
