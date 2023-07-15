@@ -13,7 +13,6 @@ export default class Api {
   }
 
   _request(endpoint, options) {
-    // eslint-disable-next-line no-underscore-dangle
     console.log(this.url)
     return fetch(`${this.url}${endpoint}`, options).then(this._getResponseData);
   }

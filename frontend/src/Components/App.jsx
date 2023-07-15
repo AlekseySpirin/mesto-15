@@ -198,7 +198,6 @@ function App() {
     console.log('Сработало на фронте');
 
     function makeRequest() {
-      // eslint-disable-next-line no-shadow
       return api.changeLikeCardStatus(card._id, !isLiked).then((card) => {
         setCards((state) => state.map((c) => (c._id === card._id ? card : c)));
       });
