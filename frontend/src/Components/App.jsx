@@ -45,7 +45,7 @@ function App() {
   const [isLoading, setIsLoading] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
   const [isResultsOpen, setIsResultsOpen] = useState(false);
-  const { REACT_APP_API_URL } = process.env
+  const { REACT_APP_API_URL = "http://api.mesto-spirin.nomoredomains.work" } = process.env
   const api = new Api({
     url: REACT_APP_API_URL,
     headers: {
