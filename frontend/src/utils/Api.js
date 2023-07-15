@@ -14,7 +14,7 @@ export default class Api {
 
   _request(endpoint, options) {
     console.log(this.url)
-    return fetch(`http://api.mesto-spirin.nomoredomains.work${endpoint}`, options).then(this._getResponseData);
+    return fetch(`${this.url}${endpoint}`, options).then(this._getResponseData);
   }
 
   getInitialCards() {
