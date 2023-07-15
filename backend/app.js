@@ -13,7 +13,8 @@ const { notFound } = require("./middlewares/notFound");
 const { errorHandler } = require("./middlewares/errorHandler");
 const { celebrateError } = require("./middlewares/celebrateError");
 
-const { PORT, DB_URL = "mongodb://127.0.0.1:27017/mestodb" } = process.env;
+const { PORT = 3000, DB_URL = "mongodb://127.0.0.1:27017/mestodb" } =
+  process.env;
 
 const allowedCors = [
   "https://praktikum.tk",
