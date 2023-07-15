@@ -77,5 +77,5 @@ app.use(errorHandler);
 app.use(celebrateError);
 
 app.listen(PORT, () => {
-  console.log("Сервер запущен");
+  console.log(`Сервер запущен на порту ${PORT}`);
 });
