@@ -45,14 +45,14 @@ function App() {
   const [isLoading, setIsLoading] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
   const [isResultsOpen, setIsResultsOpen] = useState(false);
-  // const { REACT_APP_API_URL = "http://api.mesto-spirin.nomoredomains.work" } = process.env
+  const { REACT_APP_API_URL = 'http://api.mesto-spirin.nomoredomains.work' } =
+    process.env;
   const api = new Api({
-    url: "http://api.mesto-spirin.nomoredomains.work",
+    url: REACT_APP_API_URL,
     headers: {
       'Content-Type': 'application/json',
     },
   });
-
   function getLoginUserDataFromToken() {
     getContent()
       .then((data) => {
@@ -198,6 +198,7 @@ function App() {
     console.log('Сработало на фронте');
 
     function makeRequest() {
+      // eslint-disable-next-line no-shadow
       return api.changeLikeCardStatus(card._id, !isLiked).then((card) => {
         setCards((state) => state.map((c) => (c._id === card._id ? card : c)));
       });
