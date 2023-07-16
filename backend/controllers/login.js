@@ -15,20 +15,18 @@ const login = (req, res, next) => {
       if (!user) {
         throw new UnauthorizedError("Такого пользователя не существует");
       }
-      return bcrypt.compare(
-        password,
-        user.password,
-        function (err, isPasswordMatch) {
-          if (!isPasswordMatch) {
-            throw new UnauthorizedError("Неправильный пароль");
-          }
-          const token = generateToken(user._id);
-          res.cookie("jwt", token, { httpOnly: true, sameSite: true });
-          return res
-            .status(200)
-            .send({ message: "Авторизация прошла успешно" });
+      return bcrypt.compare(password, user.password, (err, isPasswordMatch) => {
+        if (!isPasswordMatch) {
+          throw new UnauthorizedError("Неправильный пароль");
         }
-      );
+        const token = generateToken(user._id);
+        res.cookie("jwt", token, {
+          maxAge: 604800,
+          httpOnly: true,
+          sameSite: true
+        });
+        return res.status(200).send({ message: "Авторизация прошла успешно" });
+      });
     })
     .catch(next);
 };
