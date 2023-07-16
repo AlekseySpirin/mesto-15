@@ -65,11 +65,11 @@ const app = express();
 const corsOptions = {
   origin: allowedCors,
   credentials: true,
-  methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
-  preflightContinue: false,
-  optionsSuccessStatus: 204,
-  allowedHeaders: "Content-Type, Authorization",
-  exposedHeaders: "Content-Range, X-Content-Range"
+  methods: "GET,HEAD,PUT,PATCH,POST,DELETE"
+  // preflightContinue: false,
+  // optionsSuccessStatus: 204,
+  // allowedHeaders: "Content-Type, Authorization",
+  // exposedHeaders: "Content-Range, X-Content-Range"
 };
 
 app.use(cors(corsOptions));
