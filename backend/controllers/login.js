@@ -23,7 +23,7 @@ const login = (req, res, next) => {
             throw new UnauthorizedError("Неправильный пароль");
           }
           const token = generateToken(user._id);
-          res.cookie("jwt", token, { httpOnly: true });
+          res.cookie("jwt", token, { httpOnly: true, sameSite: true });
           return res
             .status(200)
             .send({ message: "Авторизация прошла успешно" });
