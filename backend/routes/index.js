@@ -1,5 +1,5 @@
 const router = require("express").Router();
-
+const logout = require("./logout");
 const userRoutes = require("./users");
 const cardRoutes = require("./cards");
 const loginRouter = require("./login");
@@ -12,6 +12,8 @@ router.use("/", loginRouter);
 router.use("/", registerRouter);
 
 router.use(auth);
+
+router.use("/", logout);
 
 router.use("/users", userRoutes);
 

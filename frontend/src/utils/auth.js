@@ -2,19 +2,17 @@ function checkResponse(res) {
   if (res.ok) {
     return res.json();
   }
-
   // eslint-disable-next-line prefer-promise-reject-errors
   return Promise.reject(`Ошибка ${res.status}`);
 }
 
 function request(endpoint, options) {
-  // принимает два аргумента: урл и объект опций, как и `fetch`
   const headers = {
     Accept: 'application/json',
     'Content-Type': 'application/json',
   };
 
-  return fetch(`https://api.mesto-spirin.nomoredomains.work${endpoint}`, {
+  return fetch(`http://localhost:4000${endpoint}`, {
     ...options,
     headers,
     credentials: 'include',
@@ -36,6 +34,10 @@ export const authorize = (email, password) =>
       email,
       password,
     }),
+  });
+export const logout = () =>
+  request('/logout', {
+    method: 'GET',
   });
 export const getContent = () =>
   request('/users/me', {

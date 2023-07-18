@@ -5,11 +5,11 @@ const {
   createCard,
   deleteCardById,
   likedCard,
-  dislikedCard
+  dislikedCard,
 } = require("../controllers/cards");
 const {
   createCardValidator,
-  getCardByIdValidator
+  getCardByIdValidator,
 } = require("../validation/validationRules");
 
 router.get("/", getCards);

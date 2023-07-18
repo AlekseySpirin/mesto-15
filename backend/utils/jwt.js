@@ -27,5 +27,5 @@ const decryptToken = (token) => {
 module.exports = {
   generateToken,
   verifyToken,
-  decryptToken
+  decryptToken,
 };

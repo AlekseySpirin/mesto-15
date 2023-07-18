@@ -10,7 +10,7 @@ const createUser = (req, res, next) => {
     about = "Исследователь",
     avatar = "https://pictures.s3.yandex.net/resources/jacques-cousteau_1604399756.png",
     email,
-    password
+    password,
   } = req.body;
   if (!email || !password) {
     throw new UnauthorizedError("Не передан email или пароль");
@@ -27,13 +27,13 @@ const createUser = (req, res, next) => {
           about,
           avatar,
           email,
-          password: hash
+          password: hash,
         }).then((userData) => {
           return res.status(201).send({
             name: userData.name,
             about: userData.about,
             avatar: userData.avatar,
-            email: userData.email
+            email: userData.email,
           });
         });
       });
@@ -42,5 +42,5 @@ const createUser = (req, res, next) => {
 };
 
 module.exports = {
-  createUser
+  createUser,
 };

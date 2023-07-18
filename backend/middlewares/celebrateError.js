@@ -11,5 +11,5 @@ const celebrateError = (err, req, res, next) => {
 };
 
 module.exports = {
-  celebrateError
+  celebrateError,
 };

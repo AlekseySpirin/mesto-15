@@ -23,5 +23,5 @@ module.exports = {
   emailSchema,
   passwordSchema,
   namePlaceSchema,
-  linkSchema
+  linkSchema,
 };

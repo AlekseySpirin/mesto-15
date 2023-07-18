@@ -5,12 +5,12 @@ const {
   getUsersById,
   updateUserById,
   updateUserAvatarById,
-  getCurrentUser
+  getCurrentUser,
 } = require("../controllers/users");
 const {
   getUserByIdValidator,
   updateUserValidator,
-  updateUserAvatar
+  updateUserAvatar,
 } = require("../validation/validationRules");
 
 router.get("/", getUsers);
