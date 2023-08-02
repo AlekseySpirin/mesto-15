@@ -86,6 +86,7 @@ function App() {
         .then(([info, card]) => {
           setCurrentUser(info);
           setCards(card);
+          navigate('/cards');
         })
         .catch(console.error);
     }
