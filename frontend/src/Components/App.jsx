@@ -24,6 +24,7 @@ import InfoTooltip from './InfoTooltip';
 import ProtectedRouteElement from './ProtectedRoute';
 import NotFound from './NotFound';
 import Loading from './Loading';
+import Navigation from './Navigation';
 
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(null);
@@ -53,6 +54,7 @@ function App() {
       'Content-Type': 'application/json',
     },
   });
+
   function getLoginUserDataFromToken() {
     getContent()
       .then((data) => {
@@ -201,6 +203,7 @@ function App() {
 
   function handleCardLike(card) {
     const isLiked = card.likes.some((i) => i._id === currentUser._id);
+
     function makeRequest() {
       return api.changeLikeCardStatus(card._id, !isLiked).then((newCard) => {
         setCards((state) =>
@@ -233,6 +236,11 @@ function App() {
     handleSubmit(makeRequest);
   }
 
+  function signOut() {
+    setIsLoggedIn(false);
+    handleLogout();
+  }
+
   function handleAddPlace({ name, link }) {
     function makeRequest() {
       return api
@@ -250,12 +258,19 @@ function App() {
 
   return (
     <CurrentUserContext.Provider value={currentUser}>
+      <Navigation
+        signOut={signOut}
+        isLoggedIn={isLoggedIn}
+        userData={userData}
+      />
       <Header
+        signOut={signOut}
         handleLogout={handleLogout}
         setIsLoggedIn={setIsLoggedIn}
         isLoggedIn={isLoggedIn}
         userData={userData}
       />
+
       <InfoTooltip
         name={'result'}
         isSucces={isSuccess}

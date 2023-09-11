@@ -17,14 +17,11 @@ const login = (req, res, next) => {
       }
       return bcrypt.compare(password, user.password, (err, isPasswordMatch) => {
         if (!isPasswordMatch) {
-          // при пробросе ошибки в обработчик ошибок она приходит, но сервер падает,
-          // не вижу другого способа, только вернуть результат из then
-          // throw new UnauthorizedError("Неправильный пароль")
           return res.status(401).send({ message: "Неправильный пароль" });
         }
         const token = generateToken(user._id);
         res.cookie("jwt", token, {
-          maxAge: 604800,
+          maxAge: 6048000,
           httpOnly: true,
           sameSite: true,
         });
