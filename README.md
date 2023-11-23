@@ -30,6 +30,7 @@ Mesto - интерактивная веб-страница, где вы може
 ## Запуск проекта локально
 ### Frontend
 
+```bash
 # Клонирование репозитория
 git clone https://github.com/AlekseySpirin/react-mesto-api-full-gha
 
@@ -42,8 +43,10 @@ npm install
 # Запуск проекта в режиме разработки
 npm run start
 
-### Backend
+```
 
+### Backend
+```bash
 # Переход в папку с бэкендом
 cd react-mesto-api-full-gha/backend
 
@@ -52,3 +55,4 @@ npm install
 
 # Запуск сервера
 npm run start
+```
